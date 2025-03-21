@@ -1,10 +1,10 @@
-# Todo Express Api
+# Multi Vehicle Search Api
 
-This is a REST api that does th CRUD operations for the Todo application.
+This is a REST api that will allow renters to find locations where they could store multiple vehicles
 
 
 ## Installation
-To install the Todo app in your local follow these steps:
+To install the api in your local follow these steps:
 
 1. Install NodeJS if its not already installed. You can install it by the `brew install node` command in your terminal (it can be on your root directory)
 
@@ -24,7 +24,7 @@ To install the Todo app in your local follow these steps:
 ~ $ nvm install
 ```
 
-4. Clone the seo-admin-ui repo from `https://github.com/gopinathboyanapally/todo-express.git`
+4. Clone the multi-vehicle-search-service repo from `https://github.com/gopinathboyanapally/multi-vehicle-search-service.git`
 
 5. On your terminal, cd to the repo.
 
@@ -34,7 +34,7 @@ To install the Todo app in your local follow these steps:
     $ nvm use
 ```
 
->should output this
+>should output something like this
 
 ```
 Found '[...your-repos-path]/[app-directory]/.nvmrc' with version <20.14.0>
@@ -49,49 +49,26 @@ Now using node v20.14.0(npm v10.7.0)
 ## Running the app on localhost
 1. Run `npm run start:dev` on your terminal to run the dev environment.
 
-2. You can now see it running on `http://localhost:8080/`
-
-## Set up the Database
-
-1. Download MySQL from `https://dev.mysql.com/downloads/mysql/`
-
-2. Follow the instructions on the screen. Set the user and password.
-
-3. Create a database
-```
-CREATE DATABASE databasename;
-
-```
-
-4. Navigate to database.js file in the repository and change the `user` and `password` fields which you provided in the MySQL server.
+2. You can now see it running on `http://localhost:3000/`
 
 ## Testing
-1. Now once everything is setup, You can use the browser or Postman to test the apis.
+1. Now once everything is setup, You can use the Postman software to test the API.
 
-2. You can get all the tasks using 
+2. Search for the locations to store multiple vehicles
 ```
-    GET http://localhost:8080/tasks
-```
-3. Create a new task
-```
-    POST http://localhost:8080/tasks
-    {
-        "title": "test",
-        "color": "red"
-    }
-```
-
-4. Update the task
-```
-    PUT http://localhost:8080/tasks/{id}
-    {
-        "title": "test",
-        "color": "red",
-        "completed": 1
-    }
-```
-
-5. Delete the task
-```
-    DELETE http://localhost:8080/tasks/{id}
+    POST http://localhost:3000/
+    [
+        {
+            "length": 10,
+            "quantity": 1
+        },
+        {
+            "length": 20,
+            "quantity": 2
+        },
+        {
+            "length": 25,
+            "quantity": 1
+        }
+    ]
 ```

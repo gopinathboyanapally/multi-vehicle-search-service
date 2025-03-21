@@ -1,23 +1,43 @@
 {
-  "name": "todo-express",
+  "name": "multi-vehicle-search-service",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "A simple REST API that will allow renters to find locations where they could store multiple vehicles",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "nodemon app.js",
-    "start": "node app.js"
+    "test": "jest",
+    "dev:server": "nodemon ./src/app.mjs",
+    "start:dev": "concurrently \"npm run dev:server\"",
+    "start:server": "node ./dist/server.bundle.cjs --mode production",
+    "build:server": "webpack --config webpack.server.cjs",
+    "build": "concurrently \"npm run build:server\"",
+    "start": "npm run build && concurrently \"npm run start:server\"",
+    "dockerize": "npm run test && docker build -t multi-vehicle-search-service .",
+    "docker-run": "docker run -p 3000:3000 -it --name multi-vehicle-search-service multi-vehicle-search-service",
+    "docker-stop": "docker rm -f $(docker ps -aqf \"name=^multi-vehicle-search-service$\")",
+    "docker-stop-all": "docker stop $(docker ps -q) && docker rm $(docker ps -aq)"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "express": "^4.21.2",
-    "express-validator": "^7.2.1",
-    "mysql2": "^3.12.0"
+    "express-validator": "^7.2.1"
   },
   "devDependencies": {
-    "nodemon": "^3.0.2"
+    "@babel/core": "^7.26.10",
+    "@babel/node": "^7.26.0",
+    "@babel/preset-env": "^7.26.9",
+    "@types/jest": "^29.5.14",
+    "babel-loader": "^10.0.0",
+    "concurrently": "^9.1.2",
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.2",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-middleware": "^7.4.2",
+    "webpack-dev-server": "^5.2.0",
+    "webpack-hot-middleware": "^2.26.1",
+    "webpack-node-externals": "^3.0.0"
   },
   "type": "module"
 }
