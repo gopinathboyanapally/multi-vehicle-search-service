@@ -49,7 +49,9 @@ Now using node v20.14.0(npm v10.7.0)
 ## Running the app on localhost
 1. Run `npm run start:dev` on your terminal to run the dev environment.
 
-2. You can now see it running on `http://localhost:3000/`
+2. You can now see the POST endpoint running on `http://localhost:3000/`
+
+3. The production AWS EC2 instance API Url is the `http://18.236.156.8:3000/`
 
 ## Testing
 1. Now once everything is setup, You can use the Postman software to test the API.
